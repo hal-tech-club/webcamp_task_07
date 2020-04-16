@@ -43,6 +43,32 @@
       </ul>
     </div>
 
+    <% if user_signed_in? %>
+      <h2>
+        User info
+      </h2>
+      <%= @user.profile_image_id %>
+      <table>
+        <tr>
+          <th>
+            name
+          </th>
+          <td>
+            <%= @user.name %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            introduction
+          </th>
+          <td>
+            <%= @user.introduction %>
+          </td>
+        </tr>
+      </table>
+      <%= link_to "Edit", edit_user_path(@user.id) %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

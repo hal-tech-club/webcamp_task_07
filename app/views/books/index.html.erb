@@ -1,3 +1,12 @@
+<% if @new_book.errors.any? %>
+  <div class="row">
+    <%= @new_book.errors.count %>errors prohibited this obj from being saved:<br>
+    <% @new_book.errors.full_messages.each do |message| %>
+        <%= message %>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="row">
   <div class="col-xs-3">
     <%= render 'layouts/user_info', user: @user %>

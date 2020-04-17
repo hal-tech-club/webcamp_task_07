@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # users controller下は認証ガード保護有
   before_action :authenticate_user!, :find_login_user, :new_book
+  before_action :correct_user, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -28,6 +29,13 @@ class UsersController < ApplicationController
 
   def new_book
     @new_book = Book.new
+  end
+
+  def correct_user
+    user = User.find(params[:id])
+    if current_user.id != user.id
+      redirect_to user_path(current_user.id)
+    end
   end
 
   private

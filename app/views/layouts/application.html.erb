@@ -21,7 +21,7 @@
             <%= link_to 'Users', users_path %>
           </li>
           <li class="">
-            <%# <%= link_to 'Books', books_path %> %>
+            <%= link_to 'Books', books_path %>
           </li>
           <li class="">
             <%= link_to "logout", destroy_user_session_path, method: :delete %>
@@ -42,32 +42,6 @@
         <% end %>
       </ul>
     </div>
-
-    <% if user_signed_in? %>
-      <h2>
-        User info
-      </h2>
-      <%= @user.profile_image_id %>
-      <table>
-        <tr>
-          <th>
-            name
-          </th>
-          <td>
-            <%= @user.name %>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            introduction
-          </th>
-          <td>
-            <%= @user.introduction %>
-          </td>
-        </tr>
-      </table>
-      <%= link_to "Edit", edit_user_path(@user.id) %>
-    <% end %>
 
     <%= yield %>
   </body>

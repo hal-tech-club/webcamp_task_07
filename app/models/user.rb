@@ -5,4 +5,6 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :validatable
 
   attachment :profile_image # _idは不要
+
+  has_many :books, dependent: :destroy
 end

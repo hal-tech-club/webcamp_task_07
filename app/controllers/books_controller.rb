@@ -20,7 +20,7 @@ class BooksController < ApplicationController
 
   # Book編集画面表示
   def edit
-    @book = Book.find(params[:id]
+    @book = Book.find(params[:id])
   end
 
   # Book更新

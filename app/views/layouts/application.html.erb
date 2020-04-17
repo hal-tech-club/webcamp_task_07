@@ -52,6 +52,10 @@
 
     <main>
       <div class="container">
+        <p id="success">
+          <%= h(flash[:success]) %>
+        </p>
+
         <%= yield %>
       </div>
     </main>

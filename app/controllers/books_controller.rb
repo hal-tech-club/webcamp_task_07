@@ -10,14 +10,17 @@ class BooksController < ApplicationController
 
   # Book一覧画面表示
   def index
+    @books = Book.all
   end
 
   # Book詳細画面表示
   def show
+    @book = Book.find(params[:id])
   end
 
   # Book編集画面表示
   def edit
+    @book = Book.find(params[:id]
   end
 
   # Book更新

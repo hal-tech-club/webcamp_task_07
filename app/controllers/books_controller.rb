@@ -31,6 +31,9 @@ class BooksController < ApplicationController
 
   # Book更新
   def update
+    book = Book.find(params[:id])
+    book.update(book_params)
+    redirect_to book_path(book.id)
   end
 
   # Book削除

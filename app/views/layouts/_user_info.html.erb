@@ -1,7 +1,9 @@
 <h2>
   User info
 </h2>
-<%= user.profile_image_id %>
+
+<%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "img-circle pull-left profile-thumb" %>
+
 <table>
   <tr>
     <th>

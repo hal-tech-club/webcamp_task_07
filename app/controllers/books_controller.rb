@@ -11,11 +11,13 @@ class BooksController < ApplicationController
   # Book一覧画面表示
   def index
     @books = Book.all
+    @user = User.find(current_user.id)
   end
 
   # Book詳細画面表示
   def show
     @book = Book.find(params[:id])
+    @user = User.find(@book.user.id)
   end
 
   # Book編集画面表示

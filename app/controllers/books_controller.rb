@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   # books controller下は認証ガード保護有
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :new_book
 
   # newに当たる部分テンプレートはほぼ常時表示
 
@@ -31,6 +31,12 @@ class BooksController < ApplicationController
 
   # Book削除
   def destroy
+  end
+
+  protected
+
+  def new_book
+    @new_book = Book.new
   end
 
   private

@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   # books controller下は認証ガード保護有
   before_action :authenticate_user!, :new_book
+  before_action :correct_user, only: [:edit, :update]
 
   # newに当たる部分テンプレートはほぼ常時表示
 
@@ -47,6 +48,13 @@ class BooksController < ApplicationController
 
   def new_book
     @new_book = Book.new
+  end
+
+  def correct_user
+    user = Book.find(params[:id]).user
+    if current_user.id != user.id
+      redirect_to books_path
+    end
   end
 
   private

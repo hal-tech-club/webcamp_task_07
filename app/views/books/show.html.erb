@@ -15,7 +15,7 @@
           <td>
             <%= link_to user_path(@user.id) do %>
               <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: '40x40', class: "pull-left profile-thumb" %>
-              <br>
+              <br />
               <%= @user.name %>
             <% end %>
           </td>
@@ -49,5 +49,44 @@
         </tr>
       </tbody>
     </table>
+
+    <h2>
+      Comments
+    </h2>
+
+    <ol>
+      <% @book.book_comments.each do |book_comment| %>
+        <li class="comment">
+          <div class="comment-text">
+            <div class="comment-author clearfix">
+              <%= link_to user_path(book_comment.user.id) do %>
+                <%= attachment_image_tag book_comment.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: '40x40', class: "pull-left profile-thumb" %>
+                <br>
+                <%= book_comment.user.name %>
+              <% end %>
+              <span class="comment-meta">
+                <span class="comment-date"><%= book_comment.created_at.strftime('%Y/%m/%d') %></span>
+              </span>
+              <% if book_comment.user === current_user %>
+                <%= link_to "削除", book_book_comments_path(@book), method: :delete %>
+              <% end %>
+            </div>
+            <div class="comment-entry"><%= book_comment.comment %></div>
+          </div>
+        </li>
+      <% end %>
+    </ol>
+
+    <h3>
+      Comment form
+    </h3>
+    <%= form_for [@book, @book_comment] do |f| %>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= f.text_area :comment, rows:'5', class: "form-control", placeholder: "コメントをここに" %>
+        </div>
+      </div>
+      <%= f.submit "送信する", class: "btn btn-primary btn-lg btn-base-1 mt-20 pull-right" %>
+    <% end %>
   </div>
 </div>

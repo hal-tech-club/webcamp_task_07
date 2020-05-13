@@ -20,6 +20,12 @@
           </th>
           <th>
           </th>
+          <th>
+          </th>
+          <th>
+          </th>
+          <th>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -30,6 +36,28 @@
           </td>
           <td>
             <%= user.name %>
+          </td>
+          <td>
+            フォロー数：<%= user.followings.count %>
+          </td>
+          <td>
+            フォロワー数：<%= user.followers.count %>
+          </td>
+          <td>
+            <% if user.id != current_user.id %>
+              <% if current_user.following?(user) %>
+                <%= form_for(current_user.following_relationships.find_by(following_id: user.id), html: { method: :delete }) do |f| %>
+                  <%= f.submit "Unfollow", class: "col-xs-12 btn btn-danger follow-btn" %>
+                <% end %>
+              <% else %>
+                <%= form_for(current_user.following_relationships.build(following_id: user.id)) do |f| %>
+                  <div>
+                    <%= f.hidden_field :following_id %>
+                  </div>
+                  <%= f.submit "Follow", class: "col-xs-12 btn btn-large btn-primary follow-btn" %>
+                <% end %>
+              <% end %>
+            <% end %>
           </td>
           <td>
             <%= link_to "Show", user_path(user.id) %>

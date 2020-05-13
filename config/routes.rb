@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
 
+  get 'searches/result'
 
   resources :books, only: [:create, :index, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]
